@@ -71,6 +71,14 @@
 
     <mat-divider></mat-divider>
 
+    <mat-form-field *ngIf="createClientForm.contains('fathername')" fxFlex="48%">
+      <mat-label>{{"Father Name" | translate}}</mat-label>
+      <input matInput formControlName="fathername">
+      <mat-error *ngIf="createClientForm.controls.middlename.hasError('pattern')">
+        {{"labels.inputs.Client father name" | translate}} <strong>{{"labels.inputs.cannot" | translate}}</strong> {{"labels.commons.begin with a special character or number" | translate}}
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field fxFlex="48%" (click)="dateOfBirthDatePicker.open()">
       <mat-label>{{ 'labels.inputs.' + getDateLabel(createClientForm.value.legalFormId, ['Date of Birth', 'Incorporation Date']) | translate }}</mat-label>
       <input matInput [max]="maxDate" [matDatepicker]="dateOfBirthDatePicker" formControlName="dateOfBirth">
